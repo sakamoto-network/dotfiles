@@ -1,0 +1,118 @@
+{
+  "position": "top", 
+    "height": 30,
+    "modules-left": ["mpd", "custom/cava"],
+    "modules-center": ["cpu", "memory", "disk"],
+    "modules-right": ["privacy", "network", "bluetooth", "custom/vpn", "pulseaudio", "battery", "clock", "tray"],
+
+    // Modules configuration
+    "sway/workspaces": {
+      "disable-scroll": true,
+      "persistent_workspaces": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+      },
+    },
+    "clock": {
+      "format": "󰅐 {:%I:%M %p}",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "format-alt": "{:%Y-%m-%d}"
+    },
+    "battery": {
+      "states": {
+        "warning": 30,
+        "critical": 15,
+      },
+      "format": "{icon} {capacity}%",
+      "format-charging": "󰂄 {capacity}%",
+      "format-plugged": "󰂄 {capacity}%",
+      "format-alt": "{time} {icon}",
+      "format-full": "󱈑 {capacity}%",
+      "format-icons": ["󱊡", "󱊢", "󱊣"]
+    },
+    "network": {
+      "format-wifi": "  {essid}",
+      "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+      "format-linked": "{ifname} (No IP) ",
+      "format-disconnected": "󰤮 Disconnected",
+      "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+      "format": "{icon} {volume}% {format_source}",
+      "format-muted": "󰖁 Muted {format_source}",
+      "format-source": "<span foreground=\"#f92672\"> </span>",
+      "format-source-muted": "<span foreground=\"#66d9ef\"> </span>",
+      "ignored-sinks": ["Easy Effects Sink"],
+      "scroll-step": 1.0,
+      "on-click": "pavucontrol",
+      "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+      "format-icons": {
+        "headphone": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["󰕿", "󰖀", "󰕾"],
+      },
+    },
+    "cpu": {
+      "format": "{usage}% "
+    },
+    "memory": {
+      "format": "{}% "
+    },
+    "disk": {
+      "format": "{percentage_used}% 󰋊"
+    },
+
+    "custom/vpn": {
+      "format": "VPN ",
+      "exec": "echo '{\"class\": \"connected\"}'",
+      "exec-if": "test -d /proc/sys/net/ipv4/conf/wg-mullvad",
+      "return-type": "json",
+      "interval": 5,
+
+    },
+    "custom/cava": {
+      "exec": "~/.config/waybar/cava.sh",
+    },
+    "mpd": {
+      "max-length": 25,
+      "format": "  {consumeIcon}{randomIcon}{repeatIcon}{singleIcon} {title}   ",
+      "format-paused": "  {consumeIcon}{randomIcon}{repeatIcon}{singleIcon} {title}   ",
+      "format-stopped": "<span foreground='#f7768e'> </span>  N/A  ",
+      "on-click": "mpc --quiet toggle",
+      "tooltip-format": "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})",
+      "consume-icons": {
+        "on": " " // Icon shows only when "consume" is on
+      },
+      "random-icons": {
+        "on": " "
+      },
+      "repeat-icons": {
+        "on": " "
+      },
+      "single-icons": {
+        "on": "1 "
+      },
+    },
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      },
+      "timeout": 60
+    },
+    "bluetooth": {
+      // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
+      "format": " {status}",
+      "format-disabled": "", // an empty format will hide the module
+      "format-connected": " {num_connections} connected",
+      "tooltip-format": "{controller_alias}\t{controller_address}",
+      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+    }
+} 
+

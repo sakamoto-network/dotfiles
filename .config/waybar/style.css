@@ -1,0 +1,91 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: JetBrains Mono Nerd Font;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+/* #workspaces { */
+/* 	background-color: #24283b; */
+/* 	margin: 5px; */
+/* 	margin-left: 10px; */
+/* 	border-radius: 5px; */
+/* } */
+/* #workspaces button { */
+/*     padding: 5px 10px; */
+/*     color: #c0caf5; */
+/* } */
+/**/
+/* #workspaces button.focused { */
+/*     color: #24283b; */
+/*     background-color: #7aa2f7; */
+/*     border-radius: 5px; */
+/* } */
+
+/* #workspaces button:hover { */
+/* 	background-color: #7dcfff; */
+/* 	color: #24283b; */
+/* 	border-radius: 5px; */
+/* } */
+
+#idle_inhibitor, #cpu, #memory, #disk, #custom-date, #clock, #battery, #pulseaudio, #network, #custom-vpn, #bluetooth, #mpd, #custom-cava {
+	/* background-color: #24283b; */
+	padding: 5px 10px;
+	margin: 2px 0px;
+}
+
+#idle_inhibitor, #network {
+  	border-radius: 5px 0px 0px 5px;
+    color: #98b8b4;
+  }
+
+#custom-date {
+	color: #7dcfff;
+}
+
+#clock {
+    color: #b48ead;
+    border-radius: 0px 5px 5px 0px;
+    margin-right: 10px;
+}
+
+#disk {
+    border-radius: 0px 5px 5px 0px;
+    /* margin-right: 10px; */
+}
+
+#battery {
+    color: #9ece6a;
+}
+
+#battery.charging {
+    color: #9ece6a;
+}
+
+#battery.warning:not(.charging) {
+    background-color: #f7768e;
+    color: #24283b;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#network {
+	color: #f7768e;
+}
+
+#pulseaudio {
+	color: #e0af68;
+}
+
+#custom-vpn {
+    color: #9ece6a;
+}
+
+#bluetooth {
+	color: #5591f2;
+}
