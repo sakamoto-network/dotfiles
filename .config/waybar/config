@@ -1,7 +1,7 @@
 {
   "position": "top", 
     "height": 30,
-    "modules-left": ["mpd", "custom/cava"],
+    "modules-left": ["sway/workspaces", "mpd", "custom/cava"],
     "modules-center": ["cpu", "memory", "disk"],
     "modules-right": ["privacy", "network", "bluetooth", "custom/vpn", "pulseaudio", "battery", "clock", "tray"],
 

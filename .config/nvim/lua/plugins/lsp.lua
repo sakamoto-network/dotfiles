@@ -12,10 +12,13 @@ return {
     lspconfig.clangd.setup {}
     lspconfig.rust_analyzer.setup {}
     lspconfig.marksman.setup{}
-
+    require'lspconfig'.cssls.setup {
+      capabilities = capabilities,
+    }
     require'lspconfig'.html.setup {
       capabilities = capabilities,
     }
+    require'lspconfig'.emmet_ls.setup{}
 
     -- Global mappings.
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions

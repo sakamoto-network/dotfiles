@@ -39,4 +39,8 @@ tnoremap("<leader><esc>", "<C-\\><C-n>")
 
 nnoremap("<C-d>", "<C-d>zz")
 nnoremap("<C-u>", "<C-u>zz")
+
+nnoremap("<leader>-", "<cmd>vsp<cr>")
+nnoremap("<leader>'", "<cmd>sp<cr>")
+nnoremap("<esc><esc>", "<cmd>noh<cr>")
 return M

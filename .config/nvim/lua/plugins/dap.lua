@@ -1,6 +1,6 @@
 return {
   'rcarriga/nvim-dap-ui', dependencies = {'mfussenegger/nvim-dap', { "theHamsta/nvim-dap-virtual-text", opts = {} }},
-  opts = function()
+  config = function()
     local dap = require('dap')
     local dapui = require("dapui")
 
@@ -61,7 +61,7 @@ return {
       port = "${port}",
       executable = {
         -- CHANGE THIS to your path!
-        command = '~/codelldb/extension/adapter/codelldb',
+        command = os.getenv('HOME') .. '/codelldb/extension/adapter/codelldb',
         args = {"--port", "${port}"},
       }
     }
