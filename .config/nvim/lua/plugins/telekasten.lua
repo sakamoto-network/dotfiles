@@ -5,7 +5,7 @@ return {
     {"<leader>z", "<cmd>Telekasten panel<cr>"}
   },
   opts = {
-    home = vim.fn.expand("~/zettelkasten"), -- Put the name of your notes directory here
-    template_new_note = '~/zettelkasten/templates/note.md',
+    home = vim.fn.expand("~/notes"), -- Put the name of your notes directory here
+    template_new_note = '~/notes/templates/note.md',
   }
 }
