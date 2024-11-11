@@ -5,6 +5,8 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+export ZK_NOTEBOOK_DIR="$HOME/notes/"
+
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
 then
@@ -14,6 +16,9 @@ export PATH
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
+#
+
+source ~/.aliases
 
 # User specific aliases and functions
 if [ -d ~/.bashrc.d ]; then

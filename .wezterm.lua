@@ -31,6 +31,7 @@ config.colors = {
   -- The default background color
   background = 'black',
 }
+config.use_ime = true
 config.window_background_opacity = 0.9
 config.font_size = 11.5
 -- and finally, return the configuration to wezterm
