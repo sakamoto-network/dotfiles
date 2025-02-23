@@ -3,7 +3,7 @@
     "height": 30,
     "modules-left": ["sway/workspaces", "mpd", "custom/cava"],
     "modules-center": ["cpu", "memory", "disk"],
-    "modules-right": ["privacy", "network", "bluetooth", "custom/vpn", "pulseaudio", "battery", "clock", "tray"],
+    "modules-right": ["network", "bluetooth", "custom/vpn", "pulseaudio", "battery", "clock", "tray"],
 
     // Modules configuration
     "sway/workspaces": {

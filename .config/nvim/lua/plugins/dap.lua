@@ -1,5 +1,5 @@
 return {
-  'rcarriga/nvim-dap-ui', dependencies = {'mfussenegger/nvim-dap', { "theHamsta/nvim-dap-virtual-text", opts = {} }},
+  'rcarriga/nvim-dap-ui', dependencies = {'mfussenegger/nvim-dap', "nvim-neotest/nvim-nio", { "theHamsta/nvim-dap-virtual-text", opts = {} }},
   config = function()
     local dap = require('dap')
     local dapui = require("dapui")
@@ -56,7 +56,7 @@ return {
       dap.run_to_cursor()
     end)
 
-    dap.adapters.codelldb = {
+    dap.adapters.lldb = {
       type = 'server',
       port = "${port}",
       executable = {
@@ -69,7 +69,7 @@ return {
     dap.configurations.cpp = {
       {
         name = "Launch file",
-        type = "codelldb",
+        type = "lldb",
         request = "launch",
         program = function()
           return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')

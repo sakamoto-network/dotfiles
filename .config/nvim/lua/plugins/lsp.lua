@@ -8,8 +8,14 @@ return {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-    lspconfig.tsserver.setup {}
-    lspconfig.clangd.setup {}
+    lspconfig.ts_ls.setup {}
+    -- lspconfig.clangd.setup {}
+    lspconfig.clangd.setup({
+      cmd = {'clangd', '--background-index', '--clang-tidy', '--log=verbose'},
+      init_options = {
+        fallbackFlags = { '-std=c++17' },
+      },
+    })
     lspconfig.rust_analyzer.setup {}
     lspconfig.marksman.setup{}
     require'lspconfig'.cssls.setup {
@@ -55,6 +61,9 @@ return {
           vim.lsp.buf.format { async = true }
         end, opts)
       end,
+      vim.keymap.set("n", '<leader>i',
+        function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ 0 }), { 0 }) end,
+      opts)
     })
 
   end

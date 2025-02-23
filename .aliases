@@ -2,6 +2,6 @@ alias v="nvim"
 alias music="ncmpcpp"
 
 sample () {
-  yt-dlp -x --audio-format mp3 $1 -P home:~/Downloads/music/samples/ 
+  yt-dlp -x --audio-format wav $1 -P home:~/Downloads/music/samples/ 
 }
 

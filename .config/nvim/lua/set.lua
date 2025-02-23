@@ -19,6 +19,7 @@ vim.g.maplocalleader = ","
 vim.opt.fillchars:append { eob = " " }
 vim.opt.laststatus = 3
 vim.opt.signcolumn = "number"
+vim.opt.linebreak = true
 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
