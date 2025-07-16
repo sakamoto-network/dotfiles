@@ -23,7 +23,7 @@ set $menu exec rofi -show drun -theme android_notification
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/zero.png fit
+output * bg ~/Pictures/thumbnail.png center
 #
 # Example configuration:
 #
@@ -35,10 +35,10 @@ output * bg ~/Pictures/zero.png fit
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -63,7 +63,7 @@ output * bg ~/Pictures/zero.png fit
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+Shift+Return exec $term
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -196,7 +196,7 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-# bindsym $mod+r mode "resize"
+bindsym $mod+r mode "resize"
 
 bar swaybar_command waybar
 
@@ -215,21 +215,24 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86Search exec $menu
 
-exec mpd-mpris
+# exec mpd-mpris
 # exec easyeffects --gapplication-service
-exec dunst
-exec mpc clear && mpc add /
-exec fcitx5 -D
+exec mako
+# exec mpc clear && mpc add /
+# exec fcitx5 -D
+exec gammastep
+exec kanshi
 exec kdeconnectd
 
 bindsym $mod+Shift+y exec 'swaylock -f -c 000000'
 
-# capture all screens to clipboard    
-bindsym Shift+Print exec grimshot copy screen
+# # capture all screens to clipboard    
+# bindsym Shift+Print exec grimshot copy screen
 
 # capture the specified screen area to clipboard    
-bindsym Print exec grimshot copy area    
+bindsym Print exec flameshot gui  
 
 seat * hide_cursor 4000
 
+for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 include /etc/sway/config.d/*

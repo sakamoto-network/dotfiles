@@ -8,8 +8,8 @@ export ZK_NOTEBOOK_DIR="$HOME/notes/"
 precmd () {
   echo -n -e "\a"
 }
-source ~/.aliases
 export PATH=$PATH:~/.local/bin
+source ~/.cargo/env
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -76,7 +76,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(ssh-agent)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,3 +106,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias config='/usr/bin/git --git-dir=/home/user/.dots/ --work-tree=/home/user'
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+
+source ~/.aliases

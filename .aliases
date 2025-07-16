@@ -1,7 +1,39 @@
 alias v="nvim"
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias music="ncmpcpp"
 
-sample () {
-  yt-dlp -x --audio-format wav $1 -P home:~/Downloads/music/samples/ 
-}
+# cargo aliases
+alias cr="cargo run"
+alias cb="cargo build"
+alias ct="cargo test"
+alias cc="cargo check"
+alias crr="cargo run --release"
+alias cre="cargo run --example"
+alias cbr="cargo build --release"
+alias ca="cargo add"
+alias clippy="cargo clippy"
 
+# git aliases
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit"
+alias gcm="git commit -m"
+alias gco="git checkout"
+alias gcb="git checkout -b"
+alias gpp="git pull"
+alias gp="git push"
+alias gl="git log"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gaa="git add --all"
+alias gc-="git checkout -"
+alias gcl="git -C ~/git clone"
+
+alias lg="lazygit"
+alias lgc= "lazygit --git-dir=$HOME/.cfg --work-tree=$HOME"
+
+alias cdp=". ~/.local/bin/cdp"
+
+sample () {
+  yt-dlp -x --audio-format wav $1 -P home:~/Downloads/music/samples/
+}

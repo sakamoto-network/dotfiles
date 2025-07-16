@@ -8,9 +8,10 @@ disable_default_key_bindings = true
 -- This is where you actually apply your config choices
 -- For example, changing the color scheme:
 config.color_scheme = 'OneHalfDark'
+config.enable_wayland = false
 config.enable_tab_bar = false
 config.font = wezterm.font_with_fallback {
-  'JetBrains Mono Nerd Font Mono',
+  'CommitMono',
   'Noto Sans CJK JP Medium',
 }
 

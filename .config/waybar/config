@@ -1,118 +1,167 @@
 {
-  "position": "top", 
-    "height": 30,
-    "modules-left": ["sway/workspaces", "mpd", "custom/cava"],
-    "modules-center": ["cpu", "memory", "disk"],
-    "modules-right": ["network", "bluetooth", "custom/vpn", "pulseaudio", "battery", "clock", "tray"],
-
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    // "height": 36, // Waybar height (to be removed for auto height)
+    // Archived modules
+    // "custom/gpu", "bluetooth",  "custom/weather", "temperature", "sway/window"
+    // Choose the order of the modules
+    "modules-left": [ "clock", "custom/weather", "sway/mode", "idle_inhibitor", "custom/media"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["custom/pacman", "cpu", "temperature", "custom/gpu", "pulseaudio", "bluetooth", "network", "tray"],
     // Modules configuration
     "sway/workspaces": {
-      "disable-scroll": true,
-      "persistent_workspaces": {
-        "1": [],
-        "2": [],
-        "3": [],
-        "4": [],
-      },
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{icon}",
     },
-    "clock": {
-      "format": "󰅐 {:%I:%M %p}",
-      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-      "format-alt": "{:%Y-%m-%d}"
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
     },
-    "battery": {
-      "states": {
-        "warning": 30,
-        "critical": 15,
-      },
-      "format": "{icon} {capacity}%",
-      "format-charging": "󰂄 {capacity}%",
-      "format-plugged": "󰂄 {capacity}%",
-      "format-alt": "{time} {icon}",
-      "format-full": "󱈑 {capacity}%",
-      "format-icons": ["󱊡", "󱊢", "󱊣"]
-    },
-    "network": {
-      "format-wifi": "  {essid}",
-      "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-      "format-linked": "{ifname} (No IP) ",
-      "format-disconnected": "󰤮 Disconnected",
-      "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
-    "pulseaudio": {
-      "format": "{icon} {volume}% {format_source}",
-      "format-muted": "󰖁 Muted {format_source}",
-      "format-source": "<span foreground=\"#f92672\"> </span>",
-      "format-source-muted": "<span foreground=\"#66d9ef\"> </span>",
-      "ignored-sinks": ["Easy Effects Sink"],
-      "scroll-step": 1.0,
-      "on-click": "pavucontrol",
-      "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-      "format-icons": {
-        "headphone": "",
-        "phone": "",
-        "portable": "",
-        "car": "",
-        "default": ["󰕿", "󰖀", "󰕾"],
-      },
-    },
-    "cpu": {
-      "format": "{usage}% "
-    },
-    "memory": {
-      "format": "{}% "
-    },
-    "disk": {
-      "format": "{percentage_used}% 󰋊"
-    },
-
-    "custom/vpn": {
-      "format": "VPN ",
-      "exec": "echo '{\"class\": \"connected\"}'",
-      "exec-if": "test -d /proc/sys/net/ipv4/conf/wg-mullvad",
-      "return-type": "json",
-      "interval": 5,
-
-    },
-    "custom/cava": {
-      "exec": "~/.config/waybar/cava.sh",
-    },
-    "mpd": {
-      "max-length": 25,
-      "format": "  {consumeIcon}{randomIcon}{repeatIcon}{singleIcon} {title}   ",
-      "format-paused": "  {consumeIcon}{randomIcon}{repeatIcon}{singleIcon} {title}   ",
-      "format-stopped": "<span foreground='#f7768e'> </span>  N/A  ",
-      "on-click": "mpc --quiet toggle",
-      "tooltip-format": "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})",
-      "consume-icons": {
-        "on": " " // Icon shows only when "consume" is on
-      },
-      "random-icons": {
-        "on": " "
-      },
-      "repeat-icons": {
-        "on": " "
-      },
-      "single-icons": {
-        "on": "1 "
-      },
-    },
-    "idle_inhibitor": {
-      "format": "{icon}",
-      "format-icons": {
-        "activated": "",
-        "deactivated": ""
-      },
-      "timeout": 60
+    "sway/window": {
+        "format": "{}",
+        "max-length": 50, 
+        "tooltip": false
     },
     "bluetooth": {
-      // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
-      "format": " {status}",
-      "format-disabled": "", // an empty format will hide the module
-      "format-connected": " {num_connections} connected",
-      "tooltip-format": "{controller_alias}\t{controller_address}",
-      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-      "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
-    }
-} 
-
+        "interval": 30,
+        "format": "{icon}",
+        // "format-alt": "{status}",
+        "format-icons": {
+            "enabled": "",
+            "disabled": ""
+        },
+        "on-click": "blueberry"
+    },    
+    "sway/language": {
+        "format": "<big></big> {}",
+        // "max-length": 5,
+        "min-length": 5,        
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip": "true"
+    },
+    "tray": {
+        //"icon-size": 11,
+        "spacing": 5
+    },
+    "clock": {
+        "format": "  {:%I:%M %p  %b %e}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "today-format": "<b>{}</b>",
+        "on-click": "gnome-calendar"
+    },
+    "cpu": {
+        "interval": "1",      
+        "format": "  {max_frequency}GHz <span color=\"darkgray\">| {usage}%</span>",
+        //"max-length": 13,
+        "min-length": 13,
+        "on-click": "wezterm -e htop --sort-key PERCENT_CPU",
+        "tooltip": false
+    },
+    "temperature": {
+        //"thermal-zone": 1,
+        "interval": "4",
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+        "critical-threshold": 74,
+        "format-critical": "  {temperatureC}°C",
+        "format": "{icon}  {temperatureC}°C",
+        "format-icons": ["", "", ""],
+        "max-length": 7,
+        "min-length": 7
+    },
+    "network": {
+        // "interface": "wlan0", // (Optional) To force the use of this interface,
+        "format-wifi": "  {essid}",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "family": "ipv4",
+        "tooltip-format-wifi": "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\n {bandwidthUpBits}  {bandwidthDownBits}",
+        "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n {bandwidthUpBits}  {bandwidthDownBits}"
+    },
+    "pulseaudio": {
+        "scroll-step": 3, // %, can be a float
+        "format": "{icon} {volume}% {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        //"format-source": "{volume}% ",
+        //"format-source-muted": "",
+        "format-source": "",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+    },
+    "custom/pacman": {
+        "format": "<big></big>  {}",
+        "interval": 3600,                     // every hour
+        "exec": "checkupdates | wc -l",       // # of updates
+        "exec-if": "exit 0",                  // always run; consider advanced run conditions
+        "on-click": "wezterm -e 'paru'; pkill -SIGRTMIN+8 waybar", // update system
+        "signal": 8,
+        // "max-length": 5,
+        "min-length": 3
+    },
+    "custom/weather": {
+        "exec": "curl 'https://wttr.in/?format=1'",
+        "interval": 3600
+    },
+    "custom/gpu": {
+      "exec": "$HOME/.config/waybar/custom_modules/custom-gpu.sh",
+      "return-type": "json",
+      "format": "  {}",
+      "interval": 2,
+      "tooltip": "{tooltip}",
+//      "max-length": 19,
+      "min-length": 19,
+      "on-click": "powerupp"
+      
+    }, 
+    "custom/cpugovernor": {
+      "format": "{icon}",
+      "interval": "30",
+      "return-type": "json",
+      "exec": "$HOME/.config/waybar/custom_modules/cpugovernor.sh",
+      "min-length": 2,
+      "max-length": 2,
+        "format-icons": {
+            "perf": "",
+            "sched": ""
+        },
+    },    
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "custom/scratchpad-indicator": {
+        "interval": 3,
+        "return-type": "json",
+        "exec": "swaymsg -t get_tree | jq --unbuffered --compact-output '( select(.name == \"root\") | .nodes[] | select(.name == \"__i3\") | .nodes[] | select(.name == \"__i3_scratch\") | .focus) as $scratch_ids | [..  | (.nodes? + .floating_nodes?) // empty | .[] | select(.id |IN($scratch_ids[]))] as $scratch_nodes | { text: \"\\($scratch_nodes | length)\", tooltip: $scratch_nodes | map(\"\\(.app_id // .window_properties.class) (\\(.id)): \\(.name)\") | join(\"\\n\") }'",
+        "format": "{} 􏠜",
+        "on-click": "exec swaymsg 'scratchpad show'",
+        "on-click-right": "exec swaymsg 'move scratchpad'"
+    }    
+}
