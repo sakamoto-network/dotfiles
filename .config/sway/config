@@ -35,10 +35,10 @@ output * bg ~/Pictures/thumbnail.png center
 #
 # Example configuration:
 #
-exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000'
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+#          before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -84,7 +84,7 @@ exec swayidle -w \
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
     # Lock screen
-    bindsym $mod+Shift+m exec swaylock --clock --indicator --screenshots --effect-scale 0.4 --effect-vignette 0.2:0.5 --effect-blur 4x2 --datestr "%a %m.%e.%Y" --timestr "%I:%M %p"
+    bindsym $mod+Shift+m exec swaylock -f -c 000000 
 #
 # Moving around:
 #
@@ -223,16 +223,25 @@ exec mako
 exec gammastep
 exec kanshi
 exec kdeconnectd
+exec udiskie
+exec /usr/lib/polkit-kde-authentication-agent-1
 
 bindsym $mod+Shift+y exec 'swaylock -f -c 000000'
 
+bindsym $mod+tab workspace next
+
 # # capture all screens to clipboard    
-# bindsym Shift+Print exec grimshot copy screen
+bindsym Shift+Print exec grimshot copy screen
 
 # capture the specified screen area to clipboard    
-bindsym Print exec flameshot gui  
+bindsym Print exec grimshot copy area
 
 seat * hide_cursor 4000
 
-for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
+# flameshot
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+# for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
+
 include /etc/sway/config.d/*

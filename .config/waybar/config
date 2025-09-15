@@ -6,8 +6,8 @@
     // "custom/gpu", "bluetooth",  "custom/weather", "temperature", "sway/window"
     // Choose the order of the modules
     "modules-left": [ "clock", "custom/weather", "sway/mode", "idle_inhibitor", "custom/media"],
-    "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["custom/pacman", "cpu", "temperature", "custom/gpu", "pulseaudio", "bluetooth", "network", "tray"],
+    "modules-center": ["sway/workspaces"],
+    "modules-right": ["custom/pacman", "cpu", "temperature", "custom/gpu", "pulseaudio", "bluetooth", "network", "tray", "battery"],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
@@ -124,11 +124,10 @@
     "custom/gpu": {
       "exec": "$HOME/.config/waybar/custom_modules/custom-gpu.sh",
       "return-type": "json",
-      "format": "  {}",
+      "format": "{}",
       "interval": 2,
       "tooltip": "{tooltip}",
 //      "max-length": 19,
-      "min-length": 19,
       "on-click": "powerupp"
       
     }, 

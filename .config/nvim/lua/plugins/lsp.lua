@@ -30,6 +30,7 @@ return {
 			capabilities = capabilities,
 		})
 		require("lspconfig").emmet_ls.setup({})
+		require("lspconfig").clangd.setup({})
 
 		-- Global mappings.
 		-- See `:help vim.diagnostic.*` for documentation on any of the below functions
